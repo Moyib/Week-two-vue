@@ -1,18 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <p>{{ val }}</p>
+    <button @click="val = 5">Click to change</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      val: "world",
+      counter: 0
+    }
+  },
+  beforeCreate() {
+    alert('Hello ' + this.val + ' ' + 'I come first')
+  },
+  created() {
+    alert('Hello ' + this.val + ' ' + 'I come second')
+  },
+  beforeMount() {
+    alert('Hello ' + this.$el + ' ' + 'I come third')
+  },
+  mounted() {
+    alert('Hello this is: ' + this.$el.textContent + ' I come fourth')
+  },
+  beforeUpdate() {
+    alert("beforeUpdate() counter is: " + this.val)
+  },
+  updated() {
+    alert("updated() val is now: " + this.val)
+  },
+  destroyed() {
+    alert("now destroyed " + this.val)
   }
+
 }
 </script>
 
