@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <form>
+      <label for="firstname">
+        First Name:
+        <input id="firstname" type="text" v-model="firstName" placeholder="Your first name here">
+      </label><br>
+      <label for="lastname">
+        Last Name: 
+        <input id="lastname" type="text" v-model="lastName" placeholder="Your last name here">
+      </label><br>
+      <button @click.prevent="submitForm">Click for full name</button>
+      <p v-if="isSubmitted">Your full name is {{ fullName = firstName + " " + lastName }} !</p>
+    </form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      firstName: "",
+      lastName: "",
+      fullName: null,
+      isSubmitted: false
+    }
+  },
+  methods: {
+    submitForm() {
+      this.isSubmitted = true;
+    }
   }
 }
 </script>
