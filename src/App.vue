@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <form>
+    <form @click.prevent="submitForm">
       <label for="firstname">
         First Name:
         <input id="firstname" type="text" v-model="firstName" placeholder="Your first name here">
@@ -9,8 +9,8 @@
         Last Name: 
         <input id="lastname" type="text" v-model="lastName" placeholder="Your last name here">
       </label><br>
-      <button @click.prevent="submitForm">Click for full name</button>
-      <p v-if="isSubmitted">Your full name is {{ fullName = firstName + " " + lastName }} !</p>
+      
+      <p> {{ fullName }} </p>
     </form>
   </div>
 </template>
@@ -22,14 +22,12 @@ export default {
     return {
       firstName: "",
       lastName: "",
-      fullName: null,
-      isSubmitted: false
     }
   },
-  methods: {
-    submitForm() {
-      this.isSubmitted = true;
-    }
+  computed: {
+    fullName: function() {
+      return this.firstName + ' ' + this.lastName
+    },
   }
 }
 </script>
